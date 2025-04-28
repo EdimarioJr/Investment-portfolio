@@ -9,7 +9,7 @@
     "lint": "next lint",
     "cypress:open": "cypress open",
     "cypress-run": "cypress run",
-    "test:e2e": "npm run dev & sleep 5 && npm run cypress-run"
+    "test:e2e": "npm run dev && npm run cypress-run"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "1.1.2",

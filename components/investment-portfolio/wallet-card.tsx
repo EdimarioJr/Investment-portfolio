@@ -4,8 +4,10 @@ interface WalletCardProps {
   name: string;
   currentAmount: string;
   spentAmount: string;
+  profitLoss: string;
   type: string;
   isSelected: boolean;
+  isProfitable: boolean;
   onClick: () => void;
 }
 
@@ -13,23 +15,12 @@ export function WalletCard({
   name,
   currentAmount,
   spentAmount,
+  profitLoss,
+  isProfitable,
   type,
   isSelected,
   onClick,
 }: WalletCardProps) {
-  const getIconBackground = () => {
-    switch (type) {
-      case "Crypto":
-        return "from-amber-500 to-orange-600";
-      case "Investment":
-        return "from-cyan-500 to-blue-600";
-      case "Savings":
-        return "from-green-500 to-emerald-600";
-      default:
-        return "from-purple-500 to-indigo-600";
-    }
-  };
-
   return (
     <div
       data-testid="wallet-card"
@@ -78,17 +69,17 @@ export function WalletCard({
             {spentAmount}
           </div>
         </div>
-      </div>
 
-      <div className="mt-4 pt-4 border-t border-slate-700/50">
-        <div className={`h-2 w-full bg-slate-700 rounded-full overflow-hidden`}>
+        <div>
+          <div className="text-sm text-slate-500 mb-1">Profit/Loss</div>
           <div
-            className={`h-full bg-gradient-to-r ${getIconBackground()} rounded-full`}
-            style={{ width: "65%" }}
-          ></div>
-        </div>
-        <div className="mt-2 text-xs text-slate-400 text-right">
-          65% of total portfolio
+            data-testid="wallet-profit-loss"
+            className={`text-lg font-mono ${
+              isProfitable ? "text-emerald-500" : "text-red-500"
+            }`}
+          >
+            {profitLoss}
+          </div>
         </div>
       </div>
     </div>

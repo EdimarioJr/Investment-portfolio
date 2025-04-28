@@ -2,6 +2,7 @@
 
 import { WalletCard } from "./wallet-card";
 import { Wallet } from "@/models/wallet";
+import { formatToCurrency } from "@/lib/utils";
 
 interface WalletsContainerProps {
   wallets: Wallet[];
@@ -20,8 +21,12 @@ export function WalletsContainer({
         <WalletCard
           key={wallet.walletName}
           name={wallet.walletName}
-          currentAmount={`$${wallet.currentAmount.toLocaleString()}`}
-          spentAmount={`$${wallet.spentAmount.toLocaleString()}`}
+          currentAmount={formatToCurrency(wallet.currentAmount)}
+          spentAmount={formatToCurrency(wallet.spentAmount)}
+          profitLoss={formatToCurrency(
+            wallet.currentAmount - wallet.spentAmount
+          )}
+          isProfitable={wallet.currentAmount - wallet.spentAmount > 0}
           type={wallet.walletName.includes("Crypto") ? "Crypto" : "Investment"}
           isSelected={selectedWallet === wallet.walletName}
           onClick={() => onWalletSelect(wallet.walletName)}

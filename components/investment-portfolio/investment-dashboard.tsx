@@ -7,15 +7,6 @@ import { AssetTable } from "./asset-table";
 import { Loading } from "./loading";
 import { Wallet } from "@/models/wallet";
 
-interface Asset {
-  type: string;
-  symbol: string;
-  name: string;
-  quantity: number;
-  purchasePrice: number;
-  currentPrice: number;
-}
-
 interface InvestmentDashboardProps {
   wallets: Wallet[];
 }

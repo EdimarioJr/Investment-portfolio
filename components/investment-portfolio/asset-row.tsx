@@ -1,3 +1,4 @@
+"use client";
 interface AssetRowProps {
   symbol: string;
   name: string;
@@ -29,26 +30,29 @@ export function AssetRow({
   };
 
   return (
-    <div className="grid grid-cols-4 py-4 px-3 text-sm hover:bg-orange-50/50 dark:hover:bg-slate-800/50">
-      <div className="flex items-center space-x-3">
-        <div
-          className={`h-8 w-8 rounded-full ${getIconBackground()} flex items-center justify-center text-white font-bold text-xs`}
-        >
-          {symbol}
+    <tr
+      className="text-sm hover:bg-orange-50/50 dark:hover:bg-slate-800/50"
+      data-testid="asset-row"
+    >
+      <td className="p-4">
+        <div className="flex items-center space-x-3">
+          <div
+            className={`h-10 w-10 rounded-full ${getIconBackground()} flex items-center justify-center text-white font-bold text-xs`}
+          >
+            {symbol}
+          </div>
+          <div className="text-slate-800 dark:text-slate-200 font-medium">
+            {name}
+          </div>
         </div>
-        <div className="text-slate-800 dark:text-slate-200 font-medium">
-          {name}
-        </div>
-      </div>
-      <div className="flex items-center text-slate-700 dark:text-slate-300">
-        {type}
-      </div>
-      <div className="text-right text-slate-700 dark:text-slate-300 font-mono self-center">
+      </td>
+      <td className="p-4 text-slate-700 dark:text-slate-300">{type}</td>
+      <td className="p-4 text-right text-slate-700 dark:text-slate-300 font-mono">
         {quantity}
-      </div>
-      <div className="text-right text-orange-600 dark:text-cyan-400 font-mono self-center">
+      </td>
+      <td className="p-4 text-right text-orange-600 dark:text-cyan-400 font-mono">
         {price}
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 }

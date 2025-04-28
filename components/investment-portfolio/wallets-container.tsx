@@ -1,20 +1,32 @@
-import { WalletCard } from "./wallet-card";
+"use client";
 
-export function WalletsContainer() {
+import { WalletCard } from "./wallet-card";
+import { Wallet } from "@/models/wallet";
+
+interface WalletsContainerProps {
+  wallets: Wallet[];
+  onWalletSelect: (walletName: string) => void;
+  selectedWallet: string | null;
+}
+
+export function WalletsContainer({
+  wallets,
+  onWalletSelect,
+  selectedWallet,
+}: WalletsContainerProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-      <WalletCard
-        name="Main Investment Account"
-        currentAmount="$42,000"
-        spentAmount="$35,000"
-        type="Investment"
-      />
-      <WalletCard
-        name="Crypto Wallet"
-        currentAmount="$15,000"
-        spentAmount="$3,000"
-        type="Crypto"
-      />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {wallets.map((wallet) => (
+        <WalletCard
+          key={wallet.walletName}
+          name={wallet.walletName}
+          currentAmount={`$${wallet.currentAmount.toLocaleString()}`}
+          spentAmount={`$${wallet.spentAmount.toLocaleString()}`}
+          type={wallet.walletName.includes("Crypto") ? "Crypto" : "Investment"}
+          isSelected={selectedWallet === wallet.walletName}
+          onClick={() => onWalletSelect(wallet.walletName)}
+        />
+      ))}
     </div>
   );
 }

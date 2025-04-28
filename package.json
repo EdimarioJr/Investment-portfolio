@@ -8,7 +8,9 @@
     "start": "next start -p 3001",
     "lint": "next lint",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "prepare": "husky install",
+    "test:e2e": "cypress run"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "1.1.2",

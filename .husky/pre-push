@@ -1,5 +1,3 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-
-echo "Running Cypress tests before push..."
-npm run cypress-run
+npm run test:e2e
